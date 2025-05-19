@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Services;
+using Viewmodels;
 
 namespace NetflixClone;
 
@@ -22,7 +23,8 @@ public static class MauiProgram
 #endif
 		builder.Services.AddHttpClient(TmdbService.TmbdHttpClientName, httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
 		builder.Services.AddSingleton<TmdbService>();
-		builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<HomeViewModel>();
+        builder.Services.AddSingleton<MainPage>();
 
 		return builder.Build();
 	}

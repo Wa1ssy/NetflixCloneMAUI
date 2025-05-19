@@ -1,33 +1,23 @@
 ﻿using Services;
+using Viewmodels;
 
 namespace NetflixClone
 {
     public partial class MainPage : ContentPage
     {
-        private readonly TmdbService _tmdbService;
+        private readonly HomeViewModel _vm;
         int count = 0;
 
-        public MainPage(TmdbService tmdbService)
+        public MainPage(HomeViewModel vm)
         {
             InitializeComponent();
-            _tmdbService = tmdbService;
+            _vm = vm;
+            BindingContext = vm;
         }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            var treding = await _tmdbService.GetTrendingAsync();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            await _vm.InitializeAsync();
         }
     }
 
