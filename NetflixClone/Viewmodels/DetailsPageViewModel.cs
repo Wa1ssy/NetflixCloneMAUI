@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Models;
+using Services;
+
+namespace Viewmodels
+{
+    [QueryProperty(nameof(Media), nameof(Media))]
+    public partial class DetailsPageViewModel : ObservableObject
+    {
+        private readonly TmdbService _tmdbService;
+
+        public DetailsPageViewModel(TmdbService tmdbService)
+        {
+            _tmdbService = tmdbService;
+        }
+
+        [ObservableProperty]
+        private Media _media;
+
+        [ObservableProperty]
+        private string _mainTrailerUrl;
+
+        [ObservableProperty]
+        private bool _isBusy;
+
+        public async Task InitializeAsync()
+        {
+            IsBusy = true;
+            try
+            {
+                var trailerTeasers = await _tmdbService.GetTrailersAsync(Media.Id, Media.MediaType);
+                if (trailerTeasers?.Any() == true)
+                {
+                    var trailer = trailerTeasers.FirstOrDefault(t => t.type == "Trailer");
+                    trailer ??= trailerTeasers.First();
+                    MainTrailerUrl = GenerateYoutubeUrl(trailer.key);
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Not found", "No videos found", "Ok");
+                }
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private static string GenerateYoutubeUrl(string videoKey) => $"https://www.youtube.com/embed/{videoKey}?autoplay=1&mute=1&cc_load_policy=1";
+    }
+}

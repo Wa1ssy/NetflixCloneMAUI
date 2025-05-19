@@ -25,7 +25,17 @@ namespace Services
             await GetMediasAsync(TmdbUrls.NetflixOriginals);
         public async Task<IEnumerable<Media>> GetActionAsync() =>
             await GetMediasAsync(TmdbUrls.Action);
+        public async Task<IEnumerable<Video>?> GetTrailersAsync(int id, string type = "movie")
+        {
+            var videosWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>($"{TmdbUrls.GetTrailers(id, type)}&api_key={key}");
 
+            if (videosWrapper?.results?.Length > 0)
+            {
+                var trailerTeasers = videosWrapper.results.Where(VideosWrapper.FilterTrailerTeasers);
+                return trailerTeasers;
+            }
+            return null;
+        }
         private async Task<IEnumerable<Media>> GetMediasAsync(string url)
         {
             var trendingMoviesCollection = await HttpClient.GetFromJsonAsync<Movie>($"{url}&api_key={key}");
