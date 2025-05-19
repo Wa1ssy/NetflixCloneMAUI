@@ -25,13 +25,17 @@ namespace Viewmodels
 
         [ObservableProperty]
         private bool _isBusy;
+        [ObservableProperty]
+        private int _runtime;
 
         public async Task InitializeAsync()
         {
             IsBusy = true;
             try
             {
+                var detailsTask = _tmdbService.GetMediaDetailsAsync(Media.Id, Media.MediaType);
                 var trailerTeasers = await _tmdbService.GetTrailersAsync(Media.Id, Media.MediaType);
+                var details = await detailsTask;
                 if (trailerTeasers?.Any() == true)
                 {
                     var trailer = trailerTeasers.FirstOrDefault(t => t.type == "Trailer");
@@ -41,6 +45,10 @@ namespace Viewmodels
                 else
                 {
                     await Shell.Current.DisplayAlert("Not found", "No videos found", "Ok");
+                }
+                if (details is not null)
+                {
+                    Runtime = details.runtime;
                 }
             }
             finally
