@@ -18,6 +18,8 @@ namespace Viewmodels
 
         [ObservableProperty]
         private Media _trendingMovie;
+        [ObservableProperty]
+        private Media _selectedMedia;
 
         public ObservableCollection<Media> Trending { get; set; } = new();
         public ObservableCollection<Media> TopRated { get; set; } = new();
@@ -47,6 +49,7 @@ namespace Viewmodels
             SetMediaCollection(netflixOriginalsList, NetflixOriginals);
             SetMediaCollection(topRatedList, TopRated);
             SetMediaCollection(actionList, ActionMovies);
+            SelectedMedia = TrendingMovie;
         }
 
         private static void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
