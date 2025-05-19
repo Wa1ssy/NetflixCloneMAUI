@@ -16,11 +16,6 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-            <Style TargetType="Image" x:Key="iconImg">
-                <Setter Property="HeightRequest" Value="20"/>
-                <Setter Property="WidthRequest" Value="20"/>
-                <Setter Property="Aspect" Value="AspectFill"/>
-            </Style>
             <Style TargetType="Label" x:Key="iconBtnText">
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="FontSize" Value="11"/>
@@ -72,7 +67,10 @@
                             HeightRequest="25"
                             WidthRequest="25"
                             CornerRadius="25"
-                            Padding="0"/>
+                            Padding="0"
+                            Margin="5"
+                            Command="{Binding ClosedCommand}"
+                            Clicked="Button_Clicked"/>
                 </Grid>
 
                 <Label Grid.Row="1"
@@ -96,7 +94,8 @@
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
                     <Image Source="play.png"
-                           Style="{StaticResource iconImg}">
+                           HeightRequest="20"
+                           WidthRequest="20">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
@@ -110,7 +109,8 @@
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
                     <Image Source="download.png"
-                           Style="{StaticResource iconImg}">
+                           HeightRequest="20"
+                           WidthRequest="20">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
@@ -123,7 +123,8 @@
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
                     <Image Source="plus.png"
-                           Style="{StaticResource iconImg}">
+                           HeightRequest="20"
+                           WidthRequest="20">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
@@ -137,7 +138,8 @@
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
                     <Image Source="share.png"
-                           Style="{StaticResource iconImg}">
+                           HeightRequest="20"
+                           WidthRequest="20">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>

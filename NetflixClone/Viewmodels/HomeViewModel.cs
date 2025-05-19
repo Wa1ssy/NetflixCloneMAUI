@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Models;
 using Services;
 
@@ -20,6 +21,8 @@ namespace Viewmodels
         private Media _trendingMovie;
         [ObservableProperty]
         private Media _selectedMedia;
+        [ObservableProperty]
+        public bool _showMovieInfoBox;
 
         public ObservableCollection<Media> Trending { get; set; } = new();
         public ObservableCollection<Media> TopRated { get; set; } = new();
@@ -49,7 +52,6 @@ namespace Viewmodels
             SetMediaCollection(netflixOriginalsList, NetflixOriginals);
             SetMediaCollection(topRatedList, TopRated);
             SetMediaCollection(actionList, ActionMovies);
-            SelectedMedia = TrendingMovie;
         }
 
         private static void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
@@ -59,6 +61,21 @@ namespace Viewmodels
             {
                 collection.Add(media);
             }
+        }
+        [RelayCommand]
+        private void SelectMedia(Media? media = null)
+        {
+            if (media is not null)
+            {
+                if (media.Id == SelectedMedia?.Id)
+                {
+                    media = null;
+                }
+            }
+            if (media is not null) ShowMovieInfoBox = true;
+            else ShowMovieInfoBox = false;
+
+            SelectedMedia = media; ;
         }
     }
 }
