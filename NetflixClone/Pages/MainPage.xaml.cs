@@ -1,4 +1,5 @@
-﻿using Services;
+﻿using Pages;
+using Services;
 using Viewmodels;
 
 namespace NetflixClone
@@ -26,6 +27,10 @@ namespace NetflixClone
         private void MovieInfoBox_Closed(object sender, EventArgs e)
         {
             _vm.SelectMediaCommand.Execute(null);
+        }
+        private async void CategoriesMenu_Tapped(object sender, TappedEventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(CategoriesPage));
         }
     }
 

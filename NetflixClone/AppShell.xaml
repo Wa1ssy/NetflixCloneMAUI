@@ -20,19 +20,19 @@
         Title="Games"
         Icon="console.png"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage1" />
         
         <ShellContent
         Title="New &amp; Hot"
         Icon="netflix.png"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage2" />
         
         <ShellContent
         Title="Downloads"
         Icon="download.png"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage3" />
     </TabBar>
 
 </Shell>
