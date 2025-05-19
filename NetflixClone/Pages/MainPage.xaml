@@ -5,7 +5,8 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="Black"
              xmlns:vm="clr-namespace:Viewmodels"
-             x:DataType="vm:HomeViewModel">
+             x:DataType="vm:HomeViewModel"
+             xmlns:controls="clr-namespace:Controls">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,7 +25,7 @@
             <VerticalStackLayout>
                 <Grid HeightRequest="500">
                     <Image Aspect="Center"
-                           HeightRequest="440"
+                           HeightRequest="500"
                            VerticalOptions="Start"
                            Opacity="0.8">
                         <Image.Source>
@@ -95,6 +96,20 @@
                     </HorizontalStackLayout>
 
                 </Grid>
+
+                <controls:MovieRow Heading="Top Rated" 
+                                   Movies="{Binding TopRated}" 
+                                   IsLarge="False" />
+                <controls:MovieRow Heading="Originals" 
+                                   Movies="{Binding NetflixOriginals}" 
+                                   IsLarge="True" />
+                <controls:MovieRow Heading="Trending" 
+                                   Movies="{Binding Trending}" 
+                                   IsLarge="False" />
+                <controls:MovieRow Heading="Action" 
+                                   Movies="{Binding ActionMovies}" 
+                                   IsLarge="False" />
+
             </VerticalStackLayout>
         </ScrollView>
         <Grid HeightRequest="35"

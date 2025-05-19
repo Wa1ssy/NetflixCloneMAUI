@@ -5,7 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:NetflixClone"
     Shell.FlyoutBehavior="Disabled"
-    Title="NetflixClone">
+    Title="NetflixClone"
+    Shell.TabBarBackgroundColor="#121212"
+    Shell.TabBarTitleColor="White"
+    Shell.TabBarUnselectedColor="#545454">
     <TabBar>
         <ShellContent
         Title="Home"
