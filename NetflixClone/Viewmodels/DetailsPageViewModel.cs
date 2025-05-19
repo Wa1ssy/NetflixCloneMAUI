@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Models;
@@ -27,6 +28,7 @@ namespace Viewmodels
         private bool _isBusy;
         [ObservableProperty]
         private int _runtime;
+        public ObservableCollection<Video> Videos { get; set; } = new();
 
         public async Task InitializeAsync()
         {
@@ -41,6 +43,10 @@ namespace Viewmodels
                     var trailer = trailerTeasers.FirstOrDefault(t => t.type == "Trailer");
                     trailer ??= trailerTeasers.First();
                     MainTrailerUrl = GenerateYoutubeUrl(trailer.key);
+                    foreach(var video in trailerTeasers)
+                    {
+                        Videos.Add(video);
+                    }
                 }
                 else
                 {
@@ -50,6 +56,7 @@ namespace Viewmodels
                 {
                     Runtime = details.runtime;
                 }
+
             }
             finally
             {
