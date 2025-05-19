@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="NetflixClone.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:NetflixClone"
+    Shell.FlyoutBehavior="Disabled"
+    Title="NetflixClone">
+    <TabBar>
+        <ShellContent
+        Title="Home"
+        Icon="home.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+        
+        <ShellContent
+        Title="Games"
+        Icon="console.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+        
+        <ShellContent
+        Title="New &amp; Hot"
+        Icon="netflix.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+        
+        <ShellContent
+        Title="Downloads"
+        Icon="download.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    </TabBar>
+
+</Shell>
